@@ -10,15 +10,18 @@ class ShoppingCart extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentDidMount() {
         this.setState({
-            shoppingCart: nextProps.shoppingCart
+            shoppingCart: this.props.shoppingCart
         })
     }
 
     render() {
-        let shoppingCartDisplay = this.state.shoppingCart.map((element, index) => {
-            <div className="shopping-cart-product-container">
+        console.log(this.state)
+
+        let shoppingCartDisplay = this.props.shoppingCart.map((element, index) => {
+            return(
+                <div key={index} className="shopping-cart-product-container">
                 <img src={element.image} alt="" />
                 <div className="shopping-cart-info">
                     <h2>{element.title}</h2>
@@ -28,7 +31,9 @@ class ShoppingCart extends Component {
                     </div>
                 </div>
             </div>
+            )
         })
+        console.log(shoppingCartDisplay)
         return (
             <div className="shopping-cart-container">
                 {shoppingCartDisplay[0] ?
